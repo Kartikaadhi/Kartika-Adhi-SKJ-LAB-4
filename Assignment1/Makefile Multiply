@@ -1,0 +1,39 @@
+# Makefile for C++ program equivalent to the assembly code
+
+# Compiler
+CXX = g++
+
+# Executable name
+EXEC = multiply
+
+# Source file
+SRC = multiply.cpp
+
+# Assembly output file
+ASM = $(EXEC).asm
+
+# Targets
+all: $(EXEC)
+
+$(EXEC): $(SRC)
+	$(CXX) -o $(EXEC) $(SRC)
+
+dump: $(EXEC)
+	objdump -d $(EXEC) > $(ASM)
+
+clean:
+	rm -f $(EXEC) $(ASM)
+
+run: $(EXEC)
+	./$(EXEC)
+
+
+
+
+
+- Explanation :
+  - all : Compiles the C++ program.
+  - $(EXEC): Defines how to compile the `multiply.cpp` file into an executable.
+  - dump: Disassembles the compiled executable into an assembly file.
+  - clean: Removes the compiled executable and the disassembled file.
+  - run: Runs the compiled program.
